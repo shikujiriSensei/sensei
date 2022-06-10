@@ -1,16 +1,28 @@
 <template>
-  <header class="nav__bar">
+  <header class="header">
+    <h1>しくじり先生</h1>
+  </header>
+  <div class="nav__bar">
     <div class="left-items">
-      <img src="../assets/program-icon.png" alt="icon" class="program-icon" />
       <router-link to="/" class="nav__logo nav__link">Home</router-link>
     </div>
     <div class="nav__items">
-      <router-link to="/list" class="nav__item nav__link">List</router-link>
+      <router-link to="/list" class="nav__item nav__link"
+        >失敗談一覧</router-link
+      >
+      <router-link to="/post" class="nav__item nav__link">投稿</router-link>
     </div>
-  </header>
+  </div>
 </template>
 
 <style scoped>
+.header h1 {
+  font-size: 40px;
+  background-color: antiquewhite;
+  padding: 30px 0;
+  margin: 0;
+  text-align: center;
+}
 .div {
   position: fixed;
   width: 100%;
@@ -21,7 +33,7 @@
 .nav__bar {
   position: fixed;
   width: 100%;
-  top: 0;
+  top: 90px;
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -45,6 +57,7 @@
 }
 .nav__logo {
   width: auto;
+  padding-left: 10px;
 }
 .nav__items {
   display: flex;
