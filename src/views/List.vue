@@ -36,12 +36,12 @@
 <script>
 import { collection, getDocs } from "firebase/firestore"
 import { db } from "../firebase"
-// import InfiniteLoading from "vue-infinite-loading"
+import InfiniteLoading from "vue-infinite-loading"
 
 export default {
-  // components: {
-  //   InfiniteLoading,
-  // },
+  components: {
+    InfiniteLoading,
+  },
   data() {
     return {
       episodes: [],
