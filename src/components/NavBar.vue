@@ -16,6 +16,11 @@
 </template>
 
 <style scoped>
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
 .header h1 {
   font-size: 40px;
   background-color: antiquewhite;
@@ -33,7 +38,7 @@
 .nav__bar {
   position: fixed;
   width: 100%;
-  top: 90px;
+  top: 120px;
   height: 50px;
   display: flex;
   justify-content: space-between;

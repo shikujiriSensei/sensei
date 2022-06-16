@@ -12,6 +12,7 @@
         >
           {{ episode.text }}
         </div>
+        <infinite-loading @infinite="infiniteHandler"></infinite-loading>
       </div>
       <div class="centerContainer">
         <div>
@@ -33,26 +34,50 @@
 </template>
 
 <script>
-/* 変更点１ */
 import { collection, getDocs } from "firebase/firestore"
 import { db } from "../firebase"
+// import InfiniteLoading from "vue-infinite-loading"
 
 export default {
+  // components: {
+  //   InfiniteLoading,
+  // },
   data() {
     return {
-      /* 変更点２ */
       episodes: [],
+      episodesData: [],
+      start: 0,
+      end: 3,
     }
   },
   created() {
     getDocs(collection(db, "shikujiri")).then((snapshot) => {
       snapshot.forEach((doc) => {
-        this.episodes.push({
+        this.episodesData.push({
           id: doc.id,
           ...doc.data(),
         })
       })
     })
+  },
+  methods: {
+    infiniteHandler($state) {
+      if (this.end > this.episodesData.length) {
+        // 表示するデータが無くなった場合
+        $state.complete()
+      } else {
+        // 表示するデータがある場合
+        this.getEpisodes()
+        $state.loaded()
+      }
+    },
+    getEpisodes() {
+      this.episodes = this.episodes.concat(
+        this.episodesData.slice(this.start, this.end)
+      )
+      this.start = this.start + 3
+      this.end = this.end + 3
+    },
   },
 }
 </script>
@@ -63,6 +88,7 @@ export default {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  padding: 170px;
 }
 .header {
   padding-top: 20px;
@@ -81,7 +107,6 @@ export default {
   padding-top: 100px;
   display: flex;
   align-items: center;
-  /* background-color: aqua; */
 }
 .centerContainer h3 {
   text-align: center;
