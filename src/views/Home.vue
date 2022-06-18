@@ -10,17 +10,21 @@
     </p>
     <p class="list"><img src="img/sensei.6bb75b98.png" /></p>
   </div>
-  <div>
-    <router-link to="/list" class="footer">投稿一覧</router-link>
-    <router-link to="/post" class="footer">投稿</router-link>
-  </div>
+  <footer id="footer01" class="footer outer-block">
+    <ul class="nav">
+      <router-link to="/list" class="footer">投稿一覧</router-link>
+      <router-link to="/post" class="footer">投稿</router-link>
+    </ul>
+    <p class="copyright">ばりばりきゃりーん All rights Reserved.</p>
+  </footer>
 </template>
 
 <style scoped>
 h1 {
   max-width: 800px;
   padding-top: 50px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   font-size: 60px;
   border-bottom: solid;
 }
@@ -39,5 +43,59 @@ footer {
   position: fixed;
   text-align: center;
   background-color: black;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#footer01 {
+  position: relative;
+  background: #222;
+}
+
+#footer01 .logo {
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #111;
+}
+
+#footer01 .logo a {
+  display: inline-block;
+}
+
+#footer01 .logo img {
+  width: 120px;
+}
+
+#footer01 .nav a {
+  display: block;
+  padding: 0 10px;
+  color: #ccc;
+}
+
+@media only screen and (min-width: 641px) {
+  #footer01 .nav {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 20px 0;
+  }
+  #footer01 .nav a:hover {
+    color: #ca353b;
+  }
+}
+.copyright {
+  color: white;
 }
 </style>
