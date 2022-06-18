@@ -1,29 +1,36 @@
 <template>
   <header class="header">
-    <h1>しくじり先生</h1>
+    <div class="title">
+      <h1>しくじり先生</h1>
+    </div>
+    <div class="nav__bar">
+      <div class="left-items">
+        <router-link to="/" class="nav__logo nav__link">Home</router-link>
+      </div>
+      <div class="nav__items">
+        <router-link to="/list" class="nav__item nav__link"
+          >失敗談一覧</router-link
+        >
+        <router-link to="/post" class="nav__item nav__link">投稿</router-link>
+      </div>
+    </div>
   </header>
-  <div class="nav__bar">
-    <div class="left-items">
-      <router-link to="/" class="nav__logo nav__link">Home</router-link>
-    </div>
-    <div class="nav__items">
-      <router-link to="/list" class="nav__item nav__link"
-        >失敗談一覧</router-link
-      >
-      <router-link to="/post" class="nav__item nav__link">投稿</router-link>
-    </div>
-  </div>
 </template>
 
 <style scoped>
-header {
+.header {
+  position: absolute;
+  top: 0;
+  z-index: 3;
+}
+.title {
   position: fixed;
   width: 100%;
   top: 0;
 }
-.header h1 {
+.title h1 {
   font-size: 40px;
-  background-color: antiquewhite;
+  background-color: white;
   padding: 30px 0;
   margin: 0;
   text-align: center;

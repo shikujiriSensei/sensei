@@ -1,31 +1,32 @@
 <template>
   <div class="main">
     <div class="header">
-      <h1>みんなの失敗談</h1>
+      <h2>みんなの失敗談</h2>
     </div>
     <div class="containerBox">
       <div class="leftContainer">
         <div
-          v-for="episode in episodes.slice(0, 3)"
+          v-for="episode in episodes.slice(0, 7)"
           :key="episode.id"
           class="listItemLeft"
         >
+          <h4 class="name">{{ episode.penName }} さんの失敗談</h4>
+          <br />
           {{ episode.text }}
         </div>
-        <infinite-loading @infinite="infiniteHandler"></infinite-loading>
       </div>
       <div class="centerContainer">
-        <div>
-          <img src="../assets/sensei.png" class="sensei" alt="" />
-          <h3>しくじり先生</h3>
-        </div>
+        <img src="../assets/sensei.png" class="sensei" alt="" />
+        <h3>しくじり先生</h3>
       </div>
       <div class="rightContainer">
         <div
-          v-for="episode in episodes.slice(3, 6)"
+          v-for="episode in episodes.slice(7, 14)"
           :key="episode.id"
           class="listItemRight"
         >
+          <h4 class="name">{{ episode.penName }} さんの失敗談</h4>
+          <br />
           {{ episode.text }}
         </div>
       </div>
@@ -36,48 +37,22 @@
 <script>
 import { collection, getDocs } from "firebase/firestore"
 import { db } from "../firebase"
-import InfiniteLoading from "vue-infinite-loading"
 
 export default {
-  components: {
-    InfiniteLoading,
-  },
   data() {
     return {
       episodes: [],
-      episodesData: [],
-      start: 0,
-      end: 3,
     }
   },
   created() {
     getDocs(collection(db, "shikujiri")).then((snapshot) => {
       snapshot.forEach((doc) => {
-        this.episodesData.push({
+        this.episodes.push({
           id: doc.id,
           ...doc.data(),
         })
       })
     })
-  },
-  methods: {
-    infiniteHandler($state) {
-      if (this.end > this.episodesData.length) {
-        // 表示するデータが無くなった場合
-        $state.complete()
-      } else {
-        // 表示するデータがある場合
-        this.getEpisodes()
-        $state.loaded()
-      }
-    },
-    getEpisodes() {
-      this.episodes = this.episodes.concat(
-        this.episodesData.slice(this.start, this.end)
-      )
-      this.start = this.start + 3
-      this.end = this.end + 3
-    },
   },
 }
 </script>
@@ -89,36 +64,46 @@ export default {
   align-items: center;
   min-height: 100vh;
   padding: 170px;
+  z-index: 1;
 }
 .header {
+  position: fixed;
+  width: 300px;
+  top: 150px;
   padding-top: 20px;
   text-align: center;
+  border-bottom: 1.5px solid black;
 }
 .containerBox {
   display: flex;
   justify-content: space-evenly;
+  margin-top: 100px;
+  width: 70vw;
 }
 .leftContainer {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 600px;
+  margin-right: 150px;
 }
 .centerContainer {
-  padding-top: 100px;
-  display: flex;
-  align-items: center;
+  position: fixed;
+  top: 60%;
 }
 .centerContainer h3 {
   text-align: center;
 }
 .sensei {
-  padding: 0 100px;
-  height: 200px;
+  display: fixed;
+  top: 1000px;
+  max-height: 200px;
+  animation: fadeIn 2s ease 0.3s 1 normal;
 }
 .rightContainer {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 600px;
+  margin-left: 150px;
 }
 .listItemLeft {
   position: relative;
@@ -127,8 +112,11 @@ export default {
   padding: 7px 10px;
   min-width: 120px;
   max-width: 100%;
+  color: black;
   font-size: 16px;
-  background-color: #eee;
+  background: white;
+  border: solid 3px black;
+  box-sizing: border-box;
   border-radius: 15px;
 }
 
@@ -136,15 +124,29 @@ export default {
   content: "";
   position: absolute;
   top: 50%;
-  left: 100%;
-  margin-top: -15px;
-  border: 15px solid transparent;
-  border-left: 15px solid #eee;
+  right: -24px;
+  margin-top: -12px;
+  border: 12px solid transparent;
+  border-left: 12px solid #fff;
+  z-index: 2;
+}
+.listItemLeft:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  margin-top: -14px;
+  border: 14px solid transparent;
+  border-left: 14px solid black;
+  z-index: 1;
 }
 
 .listItemLeft p {
   margin: 0;
   padding: 0;
+}
+.name {
+  text-align: center;
 }
 .listItemRight {
   position: relative;
@@ -154,7 +156,9 @@ export default {
   min-width: 120px;
   max-width: 100%;
   font-size: 16px;
-  background: #eee;
+  background: #fff;
+  border: solid 3px black;
+  box-sizing: border-box;
   border-radius: 15px;
 }
 
@@ -162,12 +166,22 @@ export default {
   content: "";
   position: absolute;
   top: 50%;
-  left: -30px;
-  margin-top: -15px;
-  border: 15px solid transparent;
-  border-right: 15px solid #eee;
+  left: -24px;
+  margin-top: -12px;
+  border: 12px solid transparent;
+  border-right: 12px solid #fff;
+  z-index: 2;
 }
-
+.listItemRight:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  margin-top: -14px;
+  border: 14px solid transparent;
+  border-right: 14px solid black;
+  z-index: 1;
+}
 .listItemRight p {
   margin: 0;
   padding: 0;
