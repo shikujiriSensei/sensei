@@ -9,6 +9,7 @@
   <div class="name">ペンネーム</div>
   <input type="text" name="name" size="15" v-model="penName" />
   <button v-on:click="toukou">投稿</button>
+  <img src="../assets/sensei.png" alt="" width="50" height="100" />
 </template>
 
 <script>
@@ -52,14 +53,32 @@ export default {
 .naiyou {
   color: rgb(10, 10, 10);
   height: 100px;
-  display: table;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.naiyou div {
+  display: table-cell;
+  vertical-align: middle;
+}
+.name {
+  color: rgb(10, 10, 10);
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+.name div {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .toukoubotton {
   color: rgb(10, 10, 10);
   height: 100px;
   display: table;
-  text-align: center;
+  justify-content: center;
+}
+.toukoubotton div {
+  display: table-cell;
+  vertical-align: middle;
 }
 </style>
