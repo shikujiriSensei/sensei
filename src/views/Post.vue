@@ -14,8 +14,9 @@
     <div>
       <h1 class="display-1">投稿フォーム</h1>
       <div class="display-2">
-        <p>
-          しくじった経験、お気軽にご投稿ください。どんな思いも、しくじり先生が受け止めてくれます。
+        <p class="display-7">しくじった経験、お気軽にご投稿ください。</p>
+        <p class="display-7">
+          どんな思いも、しくじり先生が受け止めてくれます。
         </p>
       </div>
     </div>
@@ -107,6 +108,13 @@ export default {
   font-family: "Ludica Sans Unicode";
   align-items: center;
   margin-bottom: 100px;
+}
+
+.display-7 {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
 }
 
 .dainaiyou {
