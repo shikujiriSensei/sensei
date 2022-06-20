@@ -8,7 +8,7 @@
       margin-bottom: 100px;
       border: 5px solid #333333;
       border-radius: 10px;
-      margin: 12%;
+      margin: 10%;
     "
   >
     <div>
@@ -38,7 +38,7 @@
     <div class="namenonakami">
       <input
         type="text"
-        size="74"
+        size="73"
         name="penname"
         v-model="penName"
         placeholder="(例)しくじり先生"
