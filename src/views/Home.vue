@@ -27,6 +27,8 @@ h1 {
   justify-content: center;
   font-size: 60px;
   border-bottom: solid;
+  position: relative;
+  top: 100px;
 }
 p {
   margin: 0;
@@ -35,9 +37,13 @@ p {
   font-weight: 500;
   display: flex;
   justify-content: center;
+  position: relative;
+  top: 50px;
 }
 p img {
   margin: auto;
+  position: relative;
+  top: -50px;
 }
 footer {
   position: fixed;
@@ -51,8 +57,12 @@ ul {
 }
 
 #footer01 {
-  position: relative;
+  width: 100%;
   background: #222;
+  text-align: center;
+  padding: 30px 0;
+  position: relative;
+  bottom: 0;
 }
 
 #footer01 .logo {
