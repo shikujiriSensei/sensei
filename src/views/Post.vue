@@ -1,21 +1,19 @@
 <template>
-  <div class="sensei">
-    <img src="../assets/job_sensei.png" alt="" width="100" height="200" />
-  </div>
   <div
     style="
       padding: 120px;
       margin-bottom: 100px;
       border: 5px solid #333333;
       border-radius: 10px;
-      margin: 12%;
+      margin: 19%;
     "
   >
     <div>
       <h1 class="display-1">投稿フォーム</h1>
       <div class="display-2">
-        <p>
-          しくじった経験、お気軽にご投稿ください。どんな思いも、しくじり先生が受け止めてくれます。
+        <p class="display-7">しくじった経験、お気軽にご投稿ください。</p>
+        <p class="display-7">
+          どんな思いも、しくじり先生が受け止めてくれます。
         </p>
       </div>
     </div>
@@ -38,7 +36,7 @@
     <div class="namenonakami">
       <input
         type="text"
-        size="74"
+        size="73"
         name="penname"
         v-model="penName"
         placeholder="(例)しくじり先生"
@@ -107,6 +105,13 @@ export default {
   font-family: "Ludica Sans Unicode";
   align-items: center;
   margin-bottom: 100px;
+}
+
+.display-7 {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
 }
 
 .dainaiyou {
