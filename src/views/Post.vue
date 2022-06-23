@@ -1,21 +1,15 @@
 <template>
+  <img class="background" src="../assets/postit.jpg" alt="" />
   <div class="sensei">
-    <img src="../assets/job_sensei.png" alt="" width="100" height="200" />
+    <img src="../assets/senseiUp.png" class="senseiImg" alt="" />
   </div>
-  <div
-    style="
-      padding: 120px;
-      margin-bottom: 100px;
-      border: 5px solid #333333;
-      border-radius: 10px;
-      margin: 12%;
-    "
-  >
+  <div class="main">
     <div>
       <h1 class="display-1">投稿フォーム</h1>
       <div class="display-2">
-        <p>
-          しくじった経験、お気軽にご投稿ください。どんな思いも、しくじり先生が受け止めてくれます。
+        <p class="display-7">しくじった経験、お気軽にご投稿ください。</p>
+        <p class="display-7">
+          どんな思いも、しくじり先生が受け止めてくれます。
         </p>
       </div>
     </div>
@@ -38,7 +32,7 @@
     <div class="namenonakami">
       <input
         type="text"
-        size="74"
+        size="73"
         name="penname"
         v-model="penName"
         placeholder="(例)しくじり先生"
@@ -55,9 +49,7 @@
 </template>
 
 <script>
-// JS の領域
 import { collection, addDoc } from "firebase/firestore"
-// firebase.js で db として export したものを import
 import { db } from "@/firebase"
 export default {
   data() {
@@ -79,16 +71,30 @@ export default {
 }
 </script>
 
-<style>
-/* CSS の領域 */
-
+<style scoped>
+.main {
+  position: relative;
+  width: auto;
+  padding: 10vh 5vw;
+  margin-bottom: 100px;
+  border: 5px solid #333333;
+  border-radius: 10px;
+  margin: 25vh 15vw;
+  background-color: #fff;
+  z-index: 2;
+}
+.background {
+  position: fixed;
+  width: 100vw;
+  opacity: 0.1;
+  z-index: 1;
+}
 .display-1 {
   color: rgb(10, 10, 10);
   height: 80px;
   font-size: 35px;
   display: flex;
   justify-content: center;
-  font-family: "Ludica Sans Unicode";
   margin-bottom: 85px;
   padding: 1rem 2rem;
   border-left: 5px solid #000;
@@ -98,15 +104,46 @@ export default {
   display: table-cell;
   vertical-align: middle;
 }
+.sensei {
+  position: relative;
+  top: 25vh;
+  left: 20vw;
+  display: flex;
+  justify-content: center;
+  animation-name: fadeDownAnime;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+@keyframes fadeDownAnime {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+  to {
+    opacity: 2;
+    transform: translateY(0);
+  }
+}
+.senseiImg {
+  width: 20vw;
+}
 .display-2 p {
   height: 4px;
   display: flex;
   font-size: 17px;
   justify-content: center;
   line-height: 1.7;
-  font-family: "Ludica Sans Unicode";
   align-items: center;
   margin-bottom: 100px;
+}
+
+.display-7 {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
 }
 
 .dainaiyou {
@@ -184,5 +221,19 @@ input {
 .display-3 {
   display: flex;
   justify-content: center;
+}
+textarea {
+  width: 100%;
+}
+input {
+  width: 100%;
+}
+@media screen and (max-width: 640px) {
+  .display-1 {
+    font-size: 20px;
+  }
+  .btn_hover3 {
+    padding: 20px 60px;
+  }
 }
 </style>

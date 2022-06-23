@@ -30,7 +30,7 @@
 }
 .title h1 {
   font-size: 40px;
-  background-color: white;
+  background-color: #f2f0e9;
   padding: 30px 0;
   margin: 0;
   text-align: center;
@@ -45,7 +45,7 @@
 .nav__bar {
   position: fixed;
   width: 100%;
-  top: 120px;
+  top: 115px;
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -77,5 +77,9 @@
 .nav__item {
   width: 100px;
   border-left: 1px solid #eee;
+}
+.nav_toggle,
+.nav {
+  display: none;
 }
 </style>
